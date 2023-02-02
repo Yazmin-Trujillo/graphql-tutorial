@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { useQuery, gql } from '@apollo/client';
+
+const GET_CHARACTERS= gql`
+  query GetCharacter {
+     characters{
+        results{
+           id
+           name
+           image
+           status
+        }
+     }
+  }
+`;
+
+function DisplayCharacters() {
+  const { loading, error, data } = useQuery(GET_CHARACTERS);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
+
+  return data.characters.results.map((character) => (
+      <div key={character.id}>
+          <p >{character.name} ------- <span>{character.status}</span></p>
+          <img src={character.image}/>
+      </div>
+  ));
 }
 
-export default App;
+export default function App() {
+  return (
+      <div>
+        <h2>My first Apollo app 🚀</h2>
+        <br/>
+        <DisplayCharacters/>
+      </div>
+  );
+}
