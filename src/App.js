@@ -1,18 +1,17 @@
-import './App.css';
+import "./App.css";
 import React from "react";
 
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, gql } from "@apollo/client";
 
-const GET_CHARACTERS= gql`
+const GET_CHARACTERS = gql`
   query GetCharacter {
-     characters{
-        results{
-           id
-           name
-           image
-           status
-        }
-     }
+    characters {
+      results {
+        id
+        name
+        image
+      }
+    }
   }
 `;
 
@@ -22,20 +21,28 @@ function DisplayCharacters() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
-  return data.characters.results.map((character) => (
-      <div key={character.id}>
-          <p >{character.name} ------- <span>{character.status}</span></p>
-          <img src={character.image}/>
-      </div>
-  ));
+  return (
+    <div className="contents">
+      {data.characters.results.map((character) => (
+        <div key={character.id} className="item">
+          <p className="m-0 hx">{character.name}</p>
+          <img
+            alt={character.name}
+            src={character.image}
+            className="img-responsive"
+          />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default function App() {
   return (
-      <div>
-        <h2>My first Apollo app 🚀</h2>
-        <br/>
-        <DisplayCharacters/>
-      </div>
+    <div>
+      <h2 className="text-center">My first Apollo app 🚀</h2>
+      <br />
+      <DisplayCharacters />
+    </div>
   );
 }
