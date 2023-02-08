@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/graphql-tutorial/static/css/main.de4cd370.css",
+    "main.js": "/graphql-tutorial/static/js/main.65e4ae8e.js",
+    "index.html": "/graphql-tutorial/index.html",
+    "main.de4cd370.css.map": "/graphql-tutorial/static/css/main.de4cd370.css.map",
+    "main.65e4ae8e.js.map": "/graphql-tutorial/static/js/main.65e4ae8e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.de4cd370.css",
+    "static/js/main.65e4ae8e.js"
+  ]
+}
